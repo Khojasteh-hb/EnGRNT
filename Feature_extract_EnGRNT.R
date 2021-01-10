@@ -2,16 +2,15 @@
 
 library(igraph)
 library(readr)
-library(ggplot2)
 
 ################ read input data ###################################################################
 
 # read gene expression profiles in a variety of knockdown, knockout and multifactorial 
-expression_path = read_tsv("D:/my-projects/EnGRNT/supplemtary_data/500/Ecoli-1_multifactorial.tsv",col_names = TRUE)
+expression_path = read_tsv("./Data/Ecoli-1_knockout.tsv",col_names = TRUE)
 expression_data = as.matrix(expression_path) 
 
 # read known regulatory interactions between TF and target gene
-regulation_path = read_tsv("D:/my-projects/EnGRNT/supplemtary_data/500/Ecoli-1_goldstandard.tsv",col_names = FALSE)
+regulation_path = read_tsv("./Data/Ecoli-1_goldstandard.tsv",col_names = FALSE)
 regulation_data = as.matrix(regulation_path)
 
 #---------------------------------------------------------------------------------------------------
@@ -61,7 +60,7 @@ out_degVal_nor = out_degVal$out_degVal/(exp_size-1)
 out_degVal_nor = round(out_degVal_nor, 4)
 
 out_degVal_nor = cbind(nodes_name,out_degVal_nor)
-write_tsv(out_degVal_nor,"D:/my-projects/EnGRNT/feature_extraction/outdegree_values/multifactorial-outdeg/out_degree_500.tsv",append = FALSE)
+write_tsv(out_degVal_nor,"./outputs/out_degree_50.tsv",append = FALSE)
 
 #Betweenness-----------------------------------------------------------------
 net_betweenness = centralization.betweenness(grn_net,directed = TRUE, nobigint = TRUE, normalized = TRUE)
@@ -74,7 +73,7 @@ net_betVal = net_betVal$net_betVal/((exp_size-1)*(exp_size-2)/2)
 net_betVal = round(net_betVal, 4)
 
 net_betVal = cbind(nodes_name,net_betVal)
-write_tsv(net_betVal,"D:/my-projects/EnGRNT/feature_extraction/between_values/multifactorial-bet/net_betVal_500.tsv",append = FALSE)
+write_tsv(net_betVal,"./outputs/net_betVal_50.tsv",append = FALSE)
 
 #Clustering Coefficient through Wu method----------------------------------------------------------------
 
@@ -89,7 +88,7 @@ clust_coeVal[which(!is.finite(clust_coeVal))] <- 0
 clust_coeVal = round(clust_coeVal, 4)
 
 clust_coeVal = cbind(nodes_name,clust_coeVal)
-write_tsv(clust_coeVal,"D:/my-projects/EnGRNT/feature_extraction/clustering-coef_values/multifactorial-clu/net_clusVal_500.tsv",append = FALSE)
+write_tsv(clust_coeVal,"./outputs/net_clusVal_50.tsv",append = FALSE)
 
 #---------------------------------------------------------------------------------------------------
 
