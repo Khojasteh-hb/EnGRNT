@@ -52,7 +52,7 @@ This implementation was developed during my Master's thesis and accompanies the 
 If you have any questions or would like to collaborate, please feel free to contact:
 
 Hakimeh Khojasteh  
-📧 khojasteh.hb@gmail.com
+khojasteh.hb@gmail.com
 
 ---
 
